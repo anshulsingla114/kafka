@@ -1,0 +1,263 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 1073741824 bytes. Error detail: G1 virtual space
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   This process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Unscaled Compressed Oops mode in which the Java heap is
+#     placed in the first 4GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 4GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_windows.cpp:3631), pid=356, tid=25356
+#
+# JRE version:  (22.0.1+8) (build )
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (22.0.1+8-16, mixed mode, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Xmx1G -Xms1G -XX:+UseG1GC -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35 -XX:+ExplicitGCInvokesConcurrent -Djava.awt.headless=true -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dkafka.logs.dir=C:\kafka/logs -Dlog4j.configuration=file:C:\kafka\bin\windows\../../config/log4j.properties kafka.Kafka config/server.properties
+
+Host: 12th Gen Intel(R) Core(TM) i5-12450H, 12 cores, 7G,  Windows 11 , 64 bit Build 22621 (10.0.22621.3672)
+Time: Sun Jul  7 11:53:35 2024 India Standard Time elapsed time: 0.015347 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000025a7db07070):  JavaThread "Unknown thread" [_thread_in_vm, id=25356, stack(0x0000005c54200000,0x0000005c54300000) (1024K)]
+
+Stack: [0x0000005c54200000,0x0000005c54300000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x6e2279]  (no source info available)
+V  [jvm.dll+0x874e33]  (no source info available)
+V  [jvm.dll+0x87725e]  (no source info available)
+V  [jvm.dll+0x877933]  (no source info available)
+V  [jvm.dll+0x27fd76]  (no source info available)
+V  [jvm.dll+0x6de915]  (no source info available)
+V  [jvm.dll+0x6d341a]  (no source info available)
+V  [jvm.dll+0x3589da]  (no source info available)
+V  [jvm.dll+0x360f06]  (no source info available)
+V  [jvm.dll+0x3b3e2e]  (no source info available)
+V  [jvm.dll+0x3b40d8]  (no source info available)
+V  [jvm.dll+0x32c59c]  (no source info available)
+V  [jvm.dll+0x32d158]  (no source info available)
+V  [jvm.dll+0x83ccdc]  (no source info available)
+V  [jvm.dll+0x3c0d71]  (no source info available)
+V  [jvm.dll+0x825ccc]  (no source info available)
+V  [jvm.dll+0x45b8fe]  (no source info available)
+V  [jvm.dll+0x45d781]  (no source info available)
+C  [jli.dll+0x52a3]  (no source info available)
+C  [ucrtbase.dll+0x29333]  (no source info available)
+C  [KERNEL32.DLL+0x1257d]  (no source info available)
+C  [ntdll.dll+0x5af28]  (no source info available)
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x00007ff98543b1c8, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+Total: 0
+
+Other Threads:
+  0x0000025a7db43bd0 WorkerThread "GC Thread#0"                     [id=5940, stack(0x0000005c54300000,0x0000005c54400000) (1024K)]
+  0x0000025a7db4cbc0 ConcurrentGCThread "G1 Main Marker"            [id=8076, stack(0x0000005c54400000,0x0000005c54500000) (1024K)]
+  0x0000025a7db4dee0 WorkerThread "G1 Conc#0"                       [id=14196, stack(0x0000005c54500000,0x0000005c54600000) (1024K)]
+
+[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ff984b8f367]
+VM state: not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007ff9854bbcb8] Heap_lock - owner thread: 0x0000025a7db07070
+
+Heap address: 0x00000000c0000000, size: 1024 MB, Compressed Oops mode: 32-bit
+
+CDS archive(s) mapped at: [0x0000000000000000-0x0000000000000000-0x0000000000000000), size 0, SharedBaseAddress: 0x0000000800000000, ArchiveRelocationMode: 1.
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0, Narrow klass range: 0x0
+
+GC Precious Log:
+ CardTable entry size: 512
+ Card Set container configuration: InlinePtr #cards 5 size 8 Array Of Cards #cards 12 size 40 Howl #buckets 4 coarsen threshold 1843 Howl Bitmap #cards 512 size 80 coarsen threshold 460 Card regions per heap region 1 cards per card region 2048
+
+Heap:
+ garbage-first heap   total reserved 1048576K, committed 0K, used 0K [0x00000000c0000000, 0x0000000100000000)
+  region size 1024K, 0 young (0K), 0 survivors (0K)
+
+[error occurred during error reporting (printing heap information), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ff984f8e429]
+GC Heap History (0 events):
+No events
+
+Dll operation events (1 events):
+Event: 0.005 Loaded shared library C:\Program Files\Java\jdk-22\bin\java.dll
+
+Deoptimization events (0 events):
+No events
+
+Classes loaded (0 events):
+No events
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+ZGC Phase Switch (0 events):
+No events
+
+VM Operations (0 events):
+No events
+
+Events (0 events):
+No events
+
+
+Dynamic libraries:
+0x00007ff62e860000 - 0x00007ff62e870000 	C:\Program Files\Java\jdk-22\bin\java.exe
+0x00007ffa24a90000 - 0x00007ffa24ca7000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ffa227d0000 - 0x00007ffa22894000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ffa22330000 - 0x00007ffa226dc000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ffa22140000 - 0x00007ffa22251000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007ff9ebcd0000 - 0x00007ff9ebce7000 	C:\Program Files\Java\jdk-22\bin\jli.dll
+0x00007ffa23370000 - 0x00007ffa23422000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ffa22e00000 - 0x00007ffa22ea7000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ff9ebcb0000 - 0x00007ff9ebccb000 	C:\Program Files\Java\jdk-22\bin\VCRUNTIME140.dll
+0x00007ffa232b0000 - 0x00007ffa2335a000 	C:\WINDOWS\System32\sechost.dll
+0x00007ffa226e0000 - 0x00007ffa22708000 	C:\WINDOWS\System32\bcrypt.dll
+0x00007ffa24580000 - 0x00007ffa24695000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007ffa23440000 - 0x00007ffa235ee000 	C:\WINDOWS\System32\USER32.dll
+0x00007ffa22260000 - 0x00007ffa22286000 	C:\WINDOWS\System32\win32u.dll
+0x00007ffa23f90000 - 0x00007ffa23fb9000 	C:\WINDOWS\System32\GDI32.dll
+0x00007ffa21dc0000 - 0x00007ffa21ed9000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ffa22290000 - 0x00007ffa2232a000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007ffa01dc0000 - 0x00007ffa02053000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.22621.3672_none_2713b9d173822955\COMCTL32.dll
+0x00007ffa1a780000 - 0x00007ffa1a78a000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ffa229a0000 - 0x00007ffa229d1000 	C:\WINDOWS\System32\IMM32.DLL
+0x00007ffa028e0000 - 0x00007ffa028ec000 	C:\Program Files\Java\jdk-22\bin\vcruntime140_1.dll
+0x00007ff9e3ae0000 - 0x00007ff9e3b6e000 	C:\Program Files\Java\jdk-22\bin\msvcp140.dll
+0x00007ff984850000 - 0x00007ff985597000 	C:\Program Files\Java\jdk-22\bin\server\jvm.dll
+0x00007ffa24030000 - 0x00007ffa240a1000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffa214c0000 - 0x00007ffa2150d000 	C:\WINDOWS\SYSTEM32\POWRPROF.dll
+0x00007ffa1af30000 - 0x00007ffa1af64000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ffa21490000 - 0x00007ffa214a3000 	C:\WINDOWS\SYSTEM32\UMPDC.dll
+0x00007ffa20db0000 - 0x00007ffa20dc8000 	C:\WINDOWS\SYSTEM32\kernel.appcore.dll
+0x00007ffa02870000 - 0x00007ffa0287a000 	C:\Program Files\Java\jdk-22\bin\jimage.dll
+0x00007ffa1f5b0000 - 0x00007ffa1f7e2000 	C:\WINDOWS\SYSTEM32\DBGHELP.DLL
+0x00007ffa246c0000 - 0x00007ffa24a48000 	C:\WINDOWS\System32\combase.dll
+0x00007ffa23eb0000 - 0x00007ffa23f87000 	C:\WINDOWS\System32\OLEAUT32.dll
+0x00007ff9ecfa0000 - 0x00007ff9ecfd2000 	C:\WINDOWS\SYSTEM32\dbgcore.DLL
+0x00007ffa21f50000 - 0x00007ffa21fcb000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007ff9ebc90000 - 0x00007ff9ebcae000 	C:\Program Files\Java\jdk-22\bin\java.dll
+0x00007ffa23650000 - 0x00007ffa23eac000 	C:\WINDOWS\System32\SHELL32.dll
+0x00007ffa22f10000 - 0x00007ffa230b5000 	C:\WINDOWS\System32\ole32.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Program Files\Java\jdk-22\bin;C:\WINDOWS\SYSTEM32;C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.22621.3672_none_2713b9d173822955;C:\Program Files\Java\jdk-22\bin\server
+
+VM Arguments:
+jvm_args: -Xmx1G -Xms1G -XX:+UseG1GC -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35 -XX:+ExplicitGCInvokesConcurrent -Djava.awt.headless=true -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dkafka.logs.dir=C:\kafka/logs -Dlog4j.configuration=file:C:\kafka\bin\windows\../../config/log4j.properties 
+java_command: kafka.Kafka config/server.properties
+java_class_path (initial): C:\kafka\libs\activation-1.1.1.jar;C:\kafka\libs\aopalliance-repackaged-2.6.1.jar;C:\kafka\libs\argparse4j-0.7.0.jar;C:\kafka\libs\audience-annotations-0.12.0.jar;C:\kafka\libs\caffeine-2.9.3.jar;C:\kafka\libs\checker-qual-3.19.0.jar;C:\kafka\libs\commons-beanutils-1.9.4.jar;C:\kafka\libs\commons-cli-1.4.jar;C:\kafka\libs\commons-collections-3.2.2.jar;C:\kafka\libs\commons-digester-2.1.jar;C:\kafka\libs\commons-io-2.11.0.jar;C:\kafka\libs\commons-lang3-3.8.1.jar;C:\kafka\libs\commons-logging-1.2.jar;C:\kafka\libs\commons-validator-1.7.jar;C:\kafka\libs\connect-api-3.7.1.jar;C:\kafka\libs\connect-basic-auth-extension-3.7.1.jar;C:\kafka\libs\connect-file-3.7.1.jar;C:\kafka\libs\connect-json-3.7.1.jar;C:\kafka\libs\connect-mirror-3.7.1.jar;C:\kafka\libs\connect-mirror-client-3.7.1.jar;C:\kafka\libs\connect-runtime-3.7.1.jar;C:\kafka\libs\connect-transforms-3.7.1.jar;C:\kafka\libs\error_prone_annotations-2.10.0.jar;C:\kafka\libs\hk2-api-2.6.1.jar;C:\kafka\libs\hk2-locator-2.6.1.jar;C:\kafka\libs\hk2-utils-2.6.1.jar;C:\kafka\libs\jackson-annotations-2.16.2.jar;C:\kafka\libs\jackson-core-2.16.2.jar;C:\kafka\libs\jackson-databind-2.16.2.jar;C:\kafka\libs\jackson-dataformat-csv-2.16.2.jar;C:\kafka\libs\jackson-datatype-jdk8-2.16.2.jar;C:\kafka\libs\jackson-jaxrs-base-2.16.2.jar;C:\kafka\libs\jackson-jaxrs-json-provider-2.16.2.jar;C:\kafka\libs\jackson-module-jaxb-annotations-2.16.2.jar;C:\kafka\libs\jackson-module-scala_2.13-2.16.2.jar;C:\kafka\libs\jakarta.activation-api-1.2.2.jar;C:\kafka\libs\jakarta.annotation-api-1.3.5.jar;C:\kafka\libs\jakarta.inject-2.6.1.jar;C:\kafka\libs\jakarta.validation-api-2.0.2.jar;C:\kafka\libs\jakarta.ws.rs-api-2.1.6.jar;C:\kafka\libs\jakarta.xml.bind-api-2.3.3.jar;C:\kafka\libs\javassist-3.29.2-GA.jar;C:\kafka\libs\javax.activation-api-1.2.0.jar;C:\kafka\libs\javax.annotation-api-1.3.2.jar;C:\kafka\libs\javax.servlet-api-3.1.0.jar;C:\kafka\libs\javax.ws.rs-api-2.1.1.jar;C:\kafka\libs\jaxb-api-2.3.1.jar;C:\kafka\libs\jersey-client-2.39.1.jar;C:\kafka\libs\jersey-common-2.39.1.jar;C:\kafka\libs\jersey-container-servlet-2.39.1.jar;C:\kafka\libs\jersey-container-servlet-core-2.39.1.jar;C:\kafka\libs\jersey-hk2-2.39.1.jar;C:\kafka\libs\jersey-server-2.39.1.jar;C:\kafka\libs\jetty-client-9.4.54.v20240208.jar;C:\kafka\libs\jetty-continuation-9.4.54.v20240208.jar;C:\kafka\libs\jetty-http-9.4.54.v20240208.jar;C:\kafka\libs\jetty-io-9.4.54.v20240208.jar;C:\kafka\libs\jetty-security-9.4.54.v20240208.jar;C:\kafka\libs\jetty-server-9.4.54.v20240208.jar;C:\kafka\libs\jetty-servlet-9.4.54.v20240208.jar;C:\kafka\libs\jetty-servlets-9.4.54.v20240208.jar;C:\kafka\libs\jetty-util-9.4.54.v20240208.jar;C:\kafka\libs\jetty-util-ajax-9.4.54.v20240208.jar;C:\kafka\libs\jline-3.25.1.jar;C:\kafka\libs\jopt-simple-5.0.4.jar;C:\kafka\libs\jose4j-0.9.4.jar;C:\kafka\libs\jsr305-3.0.2.jar;C:\kafka\libs\kafka-clients-3.7.1.jar;C:\kafka\libs\kafka-group-coordinator-3.7.1.jar;C:\kafka\libs\kafka-log4j-appender-3.7.1.jar;C:\kafka\libs\kafka-metadata-3.7.1.jar;C:\kafka\libs\kafka-raft-3.7.1.jar;C:\kafka\libs\kafka-server-3.7.1.jar;C:\kafka\libs\kafka-server-common-3.7.1.jar;C:\kafka\libs\kafka-shell-3.7.1.jar;C:\kafka\libs\kafka-storage-3.7.1.jar;C:\kafka\libs\kafka-storage-api-3.7.1.jar;C:\kafka\libs\kafka-streams-3.7.1.jar;C:\kafka\libs\kafka-streams-examples-3.7.1.jar;C:\kafka\libs\kafka-streams-scala_2.13-3.7.1.jar;C:\kafka\libs\kafka-streams-test-utils-3.7.1.jar;C:\kafka\libs\kafka-tools-3.7.1.jar;C:\kafka\libs\kafka-tools-api-3.7.1.jar;C:\kafka\libs\kafka_2.13-3.7.1.jar;C:\kafka\libs\lz4-java-1.8.0.jar;C:\kafka\libs\maven-artifact-3.8.8.jar;C:\kafka\libs\metrics-core-2.2.0.jar;C:\kafka\libs\metrics-core-4.1.12.1.jar;C:\kafka\libs\netty-buffer-4.1.110.Final.jar;C:\kafka\libs\netty-codec-4.1.110.Final.jar;C:\kafka\libs\netty-common-4.1.110.Final.jar;C:\kafka\libs\netty-handler-4.1.110.Final.jar;C:\kafka\libs\netty-resolver-4.1.110.Final.jar;C:\kafka\libs\netty-transport-4.1.110.Final.jar;C:\kafka\libs\netty-transport-classes-epoll-4.1.110.Final.jar;C:\kafka\libs\netty-transport-native-epoll-4.1.110.Final.jar;C:\kafka\libs\netty-transport-native-unix-common-4.1.110.Final.jar;C:\kafka\libs\opentelemetry-proto-1.0.0-alpha.jar;C:\kafka\libs\osgi-resource-locator-1.0.3.jar;C:\kafka\libs\paranamer-2.8.jar;C:\kafka\libs\pcollections-4.0.1.jar;C:\kafka\libs\plexus-utils-3.3.1.jar;C:\kafka\libs\protobuf-java-3.23.4.jar;C:\kafka\libs\reflections-0.10.2.jar;C:\kafka\libs\reload4j-1.2.25.jar;C:\kafka\libs\rocksdbjni-7.9.2.jar;C:\kafka\libs\scala-collection-compat_2.13-2.10.0.jar;C:\kafka\libs\scala-java8-compat_2.13-1.0.2.jar;C:\kafka\libs\scala-library-2.13.12.jar;C:\kafka\libs\scala-logging_2.13-3.9.4.jar;C:\kafka\libs\scala-reflect-2.13.12.jar;C:\kafka\libs\slf4j-api-1.7.36.jar;C:\kafka\libs\slf4j-reload4j-1.7.36.jar;C:\kafka\libs\snappy-java-1.1.10.5.jar;C:\kafka\libs\swagger-annotations-2.2.8.jar;C:\kafka\libs\trogdor-3.7.1.jar;C:\kafka\libs\zookeeper-3.8.4.jar;C:\kafka\libs\zookeeper-jute-3.8.4.jar;C:\kafka\libs\zstd-jni-1.5.6-3.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 4                                         {product} {ergonomic}
+     uint ConcGCThreads                            = 3                                         {product} {ergonomic}
+     bool ExplicitGCInvokesConcurrent              = true                                      {product} {command line}
+     uint G1ConcRefinementThreads                  = 10                                        {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 1048576                                   {product} {ergonomic}
+   size_t InitialHeapSize                          = 1073741824                                {product} {command line}
+     uint InitiatingHeapOccupancyPercent           = 35                                        {product} {command line}
+     bool ManagementServer                         = true                                      {product} {command line}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+    uintx MaxGCPauseMillis                         = 20                                        {product} {command line}
+   size_t MaxHeapSize                              = 1073741824                                {product} {command line}
+   size_t MinHeapDeltaBytes                        = 1048576                                   {product} {ergonomic}
+   size_t MinHeapSize                              = 1073741824                                {product} {command line}
+    uintx NonNMethodCodeHeapSize                   = 5839372                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122909434                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122909434                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+   size_t SoftMaxHeapSize                          = 1073741824                             {manageable} {ergonomic}
+     bool UseCompressedOops                        = true                           {product lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {command line}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags foldmultilines=false
+ #1: stderr all=off uptime,level,tags foldmultilines=false
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jdk-22
+CLASSPATH="C:\kafka\libs\activation-1.1.1.jar";"C:\kafka\libs\aopalliance-repackaged-2.6.1.jar";"C:\kafka\libs\argparse4j-0.7.0.jar";"C:\kafka\libs\audience-annotations-0.12.0.jar";"C:\kafka\libs\caffeine-2.9.3.jar";"C:\kafka\libs\checker-qual-3.19.0.jar";"C:\kafka\libs\commons-beanutils-1.9.4.jar";"C:\kafka\libs\commons-cli-1.4.jar";"C:\kafka\libs\commons-collections-3.2.2.jar";"C:\kafka\libs\commons-digester-2.1.jar";"C:\kafka\libs\commons-io-2.11.0.jar";"C:\kafka\libs\commons-lang3-3.8.1.jar";"C:\kafka\libs\commons-logging-1.2.jar";"C:\kafka\libs\commons-validator-1.7.jar";"C:\kafka\libs\connect-api-3.7.1.jar";"C:\kafka\libs\connect-basic-auth-extension-3.7.1.jar";"C:\kafka\libs\connect-file-3.7.1.jar";"C:\kafka\libs\connect-json-3.7.1.jar";"C:\kafka\libs\connect-mirror-3.7.1.jar";"C:\kafka\libs\connect-mirror-client-3.7.1.jar";"C:\kafka\libs\connect-runtime-3.7.1.jar";"C:\kafka\libs\connect-transforms-3.7.1.jar";"C:\kafka\libs\error_prone_annotations-2.10.0.jar";"C:\kafka\libs\hk2-api-2.6.1.jar";"C:\kafka\libs\hk2-locator-2.6.1.jar";"C:\kafka\libs\hk2-utils-2.6.1.jar";"C:\kafka\libs\jackson-annotations-2.16.2.jar";"C:\kafka\libs\jackson-core-2.16.2.jar";"C:\kafka\libs\jackson-databind-2.16.2.jar";"C:\kafka\libs\jackson-dataformat-csv-2.16.2.jar";"C:\kafka\libs\jackson-datatype-jdk8-2.16.2.jar";"C:\kafka\libs\jackson-jaxrs-base-2.16.2.jar";"C:\kafka\libs\jackson-jaxrs-json-provider-2.16.2.jar";"C:\kafka\libs\jackson-module-jaxb-annotations-2.16.2.jar";"C:\kafka\libs\jackson-module-scala_2.13-2.16.2.jar";"C:\kafka\libs\jakarta.activation-api-1.2.2.jar";"C:\kafka\libs\jakarta.annotation-api-1.3.5.jar";"C:\kafka\libs\jakarta.inject-2.6.1.jar";"C:\kafka\libs\jakarta.validation-api-2.0.2.jar";"C:\kafka\libs\jakarta.ws.rs-api-2.1.6.jar";"C:\kafka\libs\jakarta.xml.bind-api-2.3.3.jar";"C:\kafka\libs\javassist-3.29.2-GA.jar";"C:\kafka\libs\javax.activation-api-1.2.0.jar";"C:\kafka\libs\javax.annotation-api-1.3.2.jar";"C:\kafka\libs\javax.servlet-api-3.1.0.jar";"C:\kafka\libs\javax.ws.rs-api-2.1.1.jar";"C:\kafka\libs\jaxb-api-2.3.1.jar";"C:\kafka\libs\jersey-client-2.39.1.jar";"C:\kafka\libs\jersey-common-2.39.1.jar";"C:\kafka\libs\jersey-container-servlet-2.39.1.jar";"C:\kafka\libs\jersey-container-servlet-core-2.39.1.jar";"C:\kafka\libs\jersey-hk2-2.39.1.jar";"C:\kafka\libs\jersey-server-2.39.1.jar";"C:\kafka\libs\jetty-client-9.4.54.v20240208.jar";"C:\kafka\libs\jetty-continuation-9.4.54.v20240208.jar";"C:\kafka\libs\jetty-http-9.4.54.v20240208.jar";"C:\kafka\libs\jetty-io-9.4.54.v20240208.jar";"C:\kafka\libs\jetty-security-9.4.54.v20240208.jar";"C:\kafka\libs\jetty-server-9.4.54.v20240208.jar";"C:\kafka\libs\jetty-servlet-9.4.54.v20240208.jar";"C:\kafka\libs\jetty-servlets-9.4.54.v20240208.jar";"C:\kafka\libs\jetty-util-9.4.54.v20240208.jar";"C:\kafka\libs\jetty-util-ajax-9.4.54.v20240208.jar";"C:\kafka\libs\jline-3.25.1.jar";"C:\kafka\libs\jopt-simple-5.0.4.jar";"C:\kafka\libs\jose4j-0.9.4.jar";"C:\kafka\libs\jsr305-3.0.2.jar";"C:\kafka\libs\kafka-clients-3.7.1.jar";"C:\kafka\libs\kafka-group-coordinator-3.7.1.jar";"C:\kafka\libs\kafka-log4j-appender-3.7.1.jar";"C:\kafka\libs\kafka-metadata-3.7.1.jar";"C:\kafka\libs\kafka-raft-3.7.1.jar";"C:\kafka\libs\kafka-server-3.7.1.jar";"C:\kafka\libs\kafka-server-common-3.7.1.jar";"C:\kafka\libs\kafka-shell-3.7.1.jar";"C:\kafka\libs\kafka-storage-3.7.1.jar";"C:\kafka\libs\kafka-storage-api-3.7.1.jar";"C:\kafka\libs\kafka-streams-3.7.1.jar";"C:\kafka\libs\kafka-streams-examples-3.7.1.jar";"C:\kafka\libs\kafka-streams-scala_2.13-3.7.1.jar";"C:\kafka\libs\kafka-streams-test-utils-3.7.1.jar";"C:\kafka\libs\kafka-tools-3.7.1.jar";"C:\kafka\libs\kafka-tools-api-3.7.1.jar";"C:\kafka\libs\kafka_2.13-3.7.1.jar";"C:\kafka\libs\lz4-java-1.8.0.jar";"C:\kafka\libs\maven-artifact-3.8.8.jar";"C:\kafka\libs\metrics-core-2.2.0.jar";"C:\kafka\libs\metrics-core-4.1.12.1.jar";"C:\kafka\libs\netty-buffer-4.1.110.Final.jar";"C:\kafka\libs\netty-codec-4.1.110.Final.jar";"C:\kafka\libs\netty-common-4.1.110.Final.jar";"C:\kafka\libs\netty-handler-4.1.110.Final.jar";"C:\kafka\libs\netty-resolver-4.1.110.Final.jar";"C:\kafka\libs\netty-transport-4.1.110.Final.jar";"C:\kafka\libs\netty-transport-classes-epoll-4.1.110.Final.jar";"C:\kafka\libs\netty-transport-native-epoll-4.1.110.Final.jar";"C:\kafka\libs\netty-transport-native-unix-common-4.1.110.Final.jar";"C:\kafka\libs\opentelemetry-proto-1.0.0-alpha.jar";"C:\kafka\libs\osgi-resource-locator-1.0.3.jar";"C:\kafka\libs\paranamer-2.8.jar";"C:\kafka\libs\pcollections-4.0.1.jar";"C:\kafka\libs\plexus-utils-3.3.1.jar";"C:\kafka\libs\protobuf-java-3.23.4.jar";"C:\kafka\libs\reflections-0.10.2.jar";"C:\kafka\libs\reload4j-1.2.25.jar";"C:\kafka\libs\rocksdbjni-7.9.2.jar";"C:\kafka\libs\scala-collection-compat_2.13-2.10.0.jar";"C:\kafka\libs\scala-java8-compat_2.13-1.0.2.jar";"C:\kafka\libs\scala-library-2.13.12.jar";"C:\kafka\libs\scala-logging_2.13-3.9.4.jar";"C:\kafka\libs\scala-reflect-2.13.12.jar";"C:\kafka\libs\slf4j-api-1.7.36.jar";"C:\kafka\libs\slf4j-reload4j-1.7.36.jar";"C:\kafka\libs\snappy-java-1.1.10.5.jar";"C:\kafka\libs\swagger-annotations-2.2.8.jar";"C:\kafka\libs\trogdor-3.7.1.jar";"C:\kafka\libs\zookeeper-3.8.4.jar";"C:\kafka\libs\zookeeper-jute-3.8.4.jar";"C:\kafka\libs\zstd-jni-1.5.6-3.jar"
+PATH=C:\kafka\myenv\Scripts;c:\Users\anshu\.vscode\extensions\ms-python.python-2024.8.1\python_files\deactivate\powershell;C:\kafka\myenv\Scripts;c:\Users\anshu\.vscode\extensions\ms-python.python-2024.8.1\python_files\deactivate\powershell;C:\kafka\myenv\Scripts;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Users\anshu\AppData\Local\Programs\Python\Python312\Scripts;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\HP\HP One Agent;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\Git\cmd;C:\Program Files\PostgreSQL\16\bin;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Users\anshu\AppData\Local\Programs\Python\Python312\Scripts\;C:\Users\anshu\AppData\Local\Programs\Python\Python312\;C:\Users\anshu\AppData\Local\Programs\Python\Launcher\;C:\Users\anshu\AppData\Local\Microsoft\WindowsApps;C:\Users\anshu\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\anshu\AppData\Roaming\npm;C:\Program Files\nodejs;
+USERNAME=anshu
+LANG=en_US.UTF-8
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 154 Stepping 3, GenuineIntel
+TMP=C:\Users\anshu\AppData\Local\Temp
+TEMP=C:\Users\anshu\AppData\Local\Temp
+
+
+
+
+Periodic native trim disabled
+
+---------------  S Y S T E M  ---------------
+
+OS:
+ Windows 11 , 64 bit Build 22621 (10.0.22621.3672)
+OS uptime: 11 days 8:56 hours
+Hyper-V role detected
+
+CPU: total 12 (initial active 12) (6 cores per cpu, 2 threads per core) family 6 model 154 stepping 3 microcode 0x432, cx8, cmov, fxsr, ht, mmx, 3dnowpref, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, lzcnt, tsc, tscinvbit, avx, avx2, aes, erms, clmul, bmi1, bmi2, adx, sha, fma, vzeroupper, clflush, clflushopt, clwb, hv, serialize, rdtscp, rdpid, fsrm, f16c, cet_ibt, cet_ss
+Processor Information for processor 0
+  Max Mhz: 2000, Current Mhz: 1520, Mhz Limit: 2000
+Processor Information for processor 1
+  Max Mhz: 2000, Current Mhz: 1520, Mhz Limit: 2000
+Processor Information for processor 2
+  Max Mhz: 2000, Current Mhz: 2000, Mhz Limit: 2000
+Processor Information for processor 3
+  Max Mhz: 2000, Current Mhz: 2000, Mhz Limit: 2000
+Processor Information for processor 4
+  Max Mhz: 2000, Current Mhz: 2000, Mhz Limit: 2000
+Processor Information for processor 5
+  Max Mhz: 2000, Current Mhz: 2000, Mhz Limit: 2000
+Processor Information for processor 6
+  Max Mhz: 2000, Current Mhz: 2000, Mhz Limit: 2000
+Processor Information for processor 7
+  Max Mhz: 2000, Current Mhz: 2000, Mhz Limit: 2000
+Processor Information for processor 8
+  Max Mhz: 2000, Current Mhz: 1500, Mhz Limit: 1500
+Processor Information for processor 9
+  Max Mhz: 2000, Current Mhz: 1500, Mhz Limit: 1500
+Processor Information for processor 10
+  Max Mhz: 2000, Current Mhz: 1500, Mhz Limit: 1500
+Processor Information for processor 11
+  Max Mhz: 2000, Current Mhz: 1500, Mhz Limit: 1500
+
+Memory: 4k page, system-wide physical 7860M (881M free)
+TotalPageFile size 21193M (AvailPageFile size 842M)
+current process WorkingSet (physical memory assigned to process): 12M, peak: 12M
+current process commit charge ("private bytes"): 64M, peak: 1088M
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (22.0.1+8-16) for windows-amd64 JRE (22.0.1+8-16), built on 2024-03-12T10:33:16Z by "mach5one" with MS VC++ 17.6 (VS2022)
+
+END.
